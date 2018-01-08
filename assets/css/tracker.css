@@ -1,0 +1,48 @@
+body {
+    background-color: rgb(57, 83, 92);
+    color: rgb(136, 202, 225);
+}
+
+button {
+    color: rgb(51, 138, 168);
+    background-color: rgb(136, 202, 225);
+    border-color: rgb(136, 202, 225) !important;
+}
+
+.button-primary {
+    background-color: rgb(51, 137, 168) !important;
+    border-color: rgb(51, 137, 168) !important;
+}
+
+input {
+    background-color: rgb(136, 202, 225);
+}
+
+table {
+    border-color: rgb(57,, 83, 92);
+}
+
+button.sorter {
+    background: none;
+    border: none;
+}
+
+.page {
+    margin: 20px 20px 20px 20px;
+}
+
+.container {
+    margin-top: 10px;
+}
+
+.button-container {
+    display: inline;
+}
+
+.centered {
+    text-align: center;
+}
+
+.bordered {
+    border-left: 5px solid grey;
+}

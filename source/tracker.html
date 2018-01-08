@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Anomaly Tracker</title>
+
+    <!-- Styling -->
+    <link rel="stylesheet" href="../assets/css/google-raleway-font.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/skeleton.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/tracker.css" type="text/css">
+  </head>
+  <body>
+    <div class="page">
+      <!-- Page Header -->
+      <h2>Anomaly Tracker</h2>
+      <p><b>View, manage, and add all anomalies tracked by the current API Key.</b></p>
+      <!-- Anomaly list -->
+      <div class="row eight columns bordered">
+        <div style="margin-left:5px;">
+          <div class="row">
+            <button id="refresh" type="button">Refresh</button>
+          </div>
+          <div id="table-holder" class="centered">
+            <table align="center">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>System</th>
+                  <th>Type</th>
+                  <th>Name</th>
+                  <th>Found</th>
+                </tr>
+              </thead>
+              <tbody id="anomalies-list">
+                <!-- Filled by the querier -->
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination -->
+          <div class="row centered">
+            <button id="prev-page">&lt;</button>
+            <div id="page-buttons" class="button-container">
+              <!-- Filled by the querier -->
+            </div>
+            <button id="next-page">&gt;</button>
+          </div>
+        </div>
+      </div>
+      <div class="row three columns bordered">
+        <div style="margin-left:5px;">
+          <form id="submission-form">
+            <h5>Submit New Anomaly</h5>
+            <p>Enter the details for a new anomaly and click submit.</p>
+            <div class="row">
+              <div class="four columns">
+                <label for="submit-id">ID</label>
+              </div>
+              <div class="six columns">
+                <input id="submit-id" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="four columns">
+                <label for="submit-system">System</label>
+              </div>
+              <div class="six columns">
+                <input id="submit-system" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="four columns">
+                <label for="submit-type">Type</label>
+              </div>
+              <div class="six columns">
+                <input id="submit-type" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="four columns">
+                <label for="submit-name">Name</label>
+              </div>
+              <div class="six columns">
+                <input id="submit-name" type="text">
+              </div>
+            </div>
+            <div class="row">
+              <button id="submit-anomaly" class="button-primary submit-anomaly" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      /*-- All the functionality lives here --*/
+      require('./tracker.js')
+    </script>
+  </body>
+</html>

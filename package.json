@@ -1,0 +1,21 @@
+{
+  "name": "anomaly-tracker-client",
+  "version": "0.0.1",
+  "description": "A lightweight Anomaly Tracker client.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/rickbau5/anomaly-tracker-client",
+  "keywords": [
+    "Eve",
+    "Eve Online",
+    "Anomaly",
+    "Electron"
+  ],
+  "author": "Rick Boss",
+  "devDependencies": {
+    "electron": "~1.7.8",
+    "request": "2.83.0"
+  }
+}
