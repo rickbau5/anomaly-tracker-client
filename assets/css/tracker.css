@@ -15,11 +15,16 @@ button {
 }
 
 input {
-    background-color: rgb(136, 202, 225);
+    color: black;
 }
 
 table {
-    border-color: rgb(57,, 83, 92);
+    border-color: rgb(57, 83, 92);
+}
+
+td button {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 button.sorter {

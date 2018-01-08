@@ -32,8 +32,15 @@ document.getElementById("next-page")
     })
 /* -- -- */
 
-function GetAnomalies(onSuccess) {
+function reset() {
     clearTable();
+    anomalies = [];
+    currentPage = 0;
+    pageButtons.innerHTML = '';
+}
+
+function GetAnomalies(onSuccess) {
+    reset();
     // TODO: show loading icon...
     request({
         url: `${SERVER_URL}/anomaly`,
@@ -63,7 +70,7 @@ function GetAnomalies(onSuccess) {
         }
 
         anomalies = parsed.anomalies;
-
+        
         if (onSuccess)
             onSuccess(anomalies)
     })
@@ -133,7 +140,30 @@ function SubmitAnomaly() {
 
         GetAnomalies(populateTable)
     })
+}
 
+function DeleteAnomaly(anomalyID, onSuccess) {
+    console.log("Deleting anomaly:", anomalyID);
+    request({
+        url: `${SERVER_URL}/anomaly`,
+        headers: {
+            'Authentication-Key': API_KEY
+        },
+        method: 'delete',
+        body: {
+            id: anomalyID,
+        },
+        json: true
+    }, (err, response, body) => {
+        if (err) {
+            console.log("Error deleting anomaly:", err);
+            return;
+        }
+        console.log(response, body);
+
+        if (onSuccess)
+            onSuccess()
+    });
 }
 
 function SelectPage(number) {
@@ -201,7 +231,6 @@ function populateTable(anomalies) {
     }
 
     const maxPage = Math.ceil(anomalies.length / PAGE_SIZE);
-    console.log(currentPage, maxPage);
     if (currentPage > maxPage) {
         currentPage--;
     }
@@ -214,7 +243,19 @@ function populateTable(anomalies) {
         createCell(tr, anomaly.system);
         createCell(tr, anomaly.type);
         createCell(tr, anomaly.name);
-        createCell(tr, anomaly.created);
+        createCell(tr, anomaly.created.seconds);
+        // If the editable field is set, add a delete button for that anomaly.
+        var td = document.createElement('TD');
+        if (anomaly.editable) {
+            var button = document.createElement('BUTTON');
+            button.appendChild(document.createTextNode("x"))
+            button.addEventListener('click', () => {
+                DeleteAnomaly(anomaly.id, () => { GetAnomalies(populateTable) })
+            });
+            button.classList.add("centered")
+            td.appendChild(button);
+        }
+        tr.appendChild(td);
         anomaliesList.appendChild(tr);
     });
 }
